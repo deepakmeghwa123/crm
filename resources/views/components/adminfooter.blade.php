@@ -289,65 +289,6 @@
       });
     </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('select[name="recruiter"], select[name="contact"]').on('change', function() {
-        var selectName = $(this).attr('name');
-        var selectValue = $(this).val();
-        var applicantId = $(this).closest('tr').data('applicant-id');
-        
-        if (selectValue) {
-            $.ajax({
-                url: "{{ route('updateApplicantField') }}", // Replace with your route
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    applicant_id: applicantId,
-                    field_name: selectName,
-                    field_value: selectValue
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert(selectName + ' updated successfully!');
-                    } else {
-                        alert('Error updating ' + selectName + '.');
-                    }
-                }
-            });
-        }
-    });
-});
 
-$(document).ready(function() {
-    $('.stars .star').on('click', function() {
-        var star = $(this);
-        var rating = star.data('value');
-        var applicantId = star.closest('.stars').data('applicant-id');
-
-        // Highlight the selected stars
-        star.siblings().removeClass('filled');
-        star.addClass('filled').prevAll().addClass('filled');
-
-        $.ajax({
-            url: "{{ route('updateApplicantField') }}", // Replace with your route
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                applicant_id: applicantId,
-                field_name: 'rating',
-                field_value: rating
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert('Rating updated successfully!');
-                } else {
-                    alert('Error updating rating.');
-                }
-            }
-        });
-    });
-});
-</script>
   </body>
 </html>
