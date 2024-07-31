@@ -17,7 +17,7 @@
                
 				<form action="{{ route('loginuser')}}" method="POST" enctype="multipart/form-data" class="sign-in-form">
                     @csrf
-					<h2 class="title">Sign in</h2>
+					<h2 class="title">Sign up</h2>
           @if (session('error'))
           <div class="alert alert-danger " style="color: red;">
               {{ session('error') }}
